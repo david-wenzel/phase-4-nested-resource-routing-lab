@@ -1,8 +1,14 @@
 class UsersController < ApplicationController
 
+
   def show
-    user = User.find_by(id: params[:id])
-    render json: user, include: :items
+    render json: @user.to_json(include: :items)
+  end
+
+  private
+
+  def set_user
+    @user = User.find(params[:id])
   end
 
 end
